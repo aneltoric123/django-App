@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0 rounded">
+        <div class="card-body text-center">
+          <h3 class="card-title">{{ user.username }}</h3>
+          <p class="text-muted">{{ user.email }}</p>
+          <hr>
+          <div class="row">
+            <div class="col-sm-6 text-start">
+              <p><strong>Date joined:</strong> {{ user.date_joined }}</p>
+              <p><strong>Last login:</strong> {{ user.last_login }}</p>
+                <p><strong>Country:</strong> {{ user_profile.country.name }} <img
+                        src="https://flagcdn.com/24x18/{{ user_profile.country.code|lower }}.png"
+                        alt="{{ user_profile.country.name }}"
+                        style="margin-left: 5px"
+                >
+                </p>
+            </div>
+              <div class="col-sm-6 text-start">
+                    <p><strong>Current Weight:</strong> {{ user_profile.current_weight }}</p>
+                    <p><strong>Age:</strong> {{ user_profile.age }}</p>
+                    <p><strong>Goal:</strong> {{ user_profile.get_goal_display }}</p>
+                </div>
+          </div>
+
+          <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+          <a href="{% url 'delete_profile' %}" class="btn btn-danger mt-3">Delete Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
