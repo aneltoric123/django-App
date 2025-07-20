@@ -7,3 +7,19 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+.weight{
+    position: relative;
+    width: 600px;
+    height: 500px;
+    background-color:lavenderblush;
+    border-radius: 70px;
+}
+.weight-progress-text{
+    text-align-last: center;
+    font-size: 25px;
+    padding-top: 20px;
+}
+.current-weight-text{
+   color: gray;
+    margin-left: 20px;
+}

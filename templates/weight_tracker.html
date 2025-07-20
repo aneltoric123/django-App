@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Track Your Weight</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Weight</button>
+</form>
+
+<canvas id="weightChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('weightChart').getContext('2d');
+const weightChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ dates|safe }},
+        datasets: [{
+            label: 'Weight (kg)',
+            data: {{ weights|safe }},
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false,
+            tension: 0.1
+        }]
+    },
+    options: {
+        scales: {
+            x: { title: { display: true, text: 'Date' }},
+            y: { title: { display: true, text: 'Weight (kg)' }}
+        }
+    }
+});
+</script>
+{% endblock %}

@@ -1,3 +1,6 @@
+from datetime import timezone
+from tkinter.constants import CASCADE
+
 from django.contrib.auth.models import User
 from django.db import models
 from django_countries.fields import CountryField
@@ -25,3 +28,11 @@ class UserProfile(models.Model):
             self.current_weight,
             self.goal
         ])
+
+class WeightEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    weight = models.FloatField()
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.weight} kg on {self.date}"

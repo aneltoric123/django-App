@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h3>Account Info</h3>
+    {{ user_form.as_p }}
+
+    <h3>Profile Info</h3>
+    {{ profile_form.as_p }}
+
+    <h3>Change Password</h3>
+    {{ password_form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
 
 
 {% endblock %}
